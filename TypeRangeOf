@@ -1,0 +1,15 @@
+DATA rtab {TYPE RANGE OF type}|{LIKE RANGE OFdobj} 
+          [INITIAL SIZE n] 
+          [VALUE IS INITIAL] 
+          [READ-ONLY]. 
+          
+          
+For eg: 
+
+DATA carrid_range TYPE RANGE OF spfli-carrid. 
+carrid_range = VALUE #( 
+  ( sign = 'I' option = 'BT' low = 'AA' high = 'LH') ). 
+SELECT * 
+       FROM spfli 
+       WHERE carrid IN @carrid_range 
+       INTO TABLE @DATA(spfli_tab). 
